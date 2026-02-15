@@ -1,12 +1,4 @@
-Here’s a **clean, properly formatted, GitHub-ready `README.md`** for your project.
 
-This one is **professional**, **not messy**, and **strictly Artificial Intelligence domain**.
-
-Copy-paste this into your `README.md`.
-
----
-
-````md
 # AI Resume & Portfolio Builder (Artificial Intelligence)
 
 A Generative AI-powered web application that helps students create **professional AI-focused resumes and portfolios** using their personal details, skills, and projects.
