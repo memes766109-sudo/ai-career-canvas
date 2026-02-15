@@ -152,10 +152,5 @@ Developed by: **Animalla Vinay Kumar**
 This project is for educational and portfolio purposes.
 
 ```
-
----
-
-If you want, I can also generate:
-✅ a **GitHub repo description + tags** (so it looks perfect on your profile)  
-✅ a **proper folder structure section** based on your actual codebase
+MIT License
 ```
