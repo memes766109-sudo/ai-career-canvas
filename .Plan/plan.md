@@ -52,7 +52,7 @@ A friendly multi-step form with progress indicator:
 - **Resume**: Download as PDF (generated from HTML in-browser)
 - **Portfolio**: Get a shareable live URL (public portfolio page hosted within the app)
 
-## Database (Supabase / Lovable Cloud)
+## Database (Supabase)
 - **profiles** table: user info linked to auth
 - **resumes** table: saved resume data (JSON), selected template, linked to user
 - **portfolios** table: saved portfolio data, template choice, public URL slug

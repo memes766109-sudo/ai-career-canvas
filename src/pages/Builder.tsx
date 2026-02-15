@@ -67,12 +67,20 @@ export default function Builder() {
     try {
       const title = data.personalDetails.fullName || "Untitled";
 
+      // Use local variables for the IDs so we don't rely on state updates completing synchronously
+      let resumeIdToUse = existingResumeId;
+      let portfolioIdToUse = existingPortfolioId;
+
       if (data.documentType === "resume" || data.documentType === "both") {
         if (existingResumeId) {
           await supabase.from("resumes").update({ data: data as any, template: data.resumeTemplate, title: `${title} - Resume` }).eq("id", existingResumeId);
+          resumeIdToUse = existingResumeId;
         } else {
           const { data: newResume } = await supabase.from("resumes").insert({ user_id: user.id, data: data as any, template: data.resumeTemplate, title: `${title} - Resume` }).select().single();
-          if (newResume) setExistingResumeId(newResume.id);
+          if (newResume) {
+            setExistingResumeId(newResume.id);
+            resumeIdToUse = newResume.id;
+          }
         }
       }
 
@@ -80,14 +88,18 @@ export default function Builder() {
         const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") + "-ai";
         if (existingPortfolioId) {
           await supabase.from("portfolios").update({ data: data as any, template: data.portfolioTemplate, title: `${title} - Portfolio`, slug }).eq("id", existingPortfolioId);
+          portfolioIdToUse = existingPortfolioId;
         } else {
           const { data: newPortfolio } = await supabase.from("portfolios").insert({ user_id: user.id, data: data as any, template: data.portfolioTemplate, title: `${title} - Portfolio`, slug, is_published: true }).select().single();
-          if (newPortfolio) setExistingPortfolioId(newPortfolio.id);
+          if (newPortfolio) {
+            setExistingPortfolioId(newPortfolio.id);
+            portfolioIdToUse = newPortfolio.id;
+          }
         }
       }
 
       toast.success("Saved! Redirecting to preview...");
-      navigate(`/preview?type=${data.documentType}&resumeId=${existingResumeId || ""}&portfolioId=${existingPortfolioId || ""}`);
+      navigate(`/preview?type=${data.documentType}&resumeId=${resumeIdToUse || ""}&portfolioId=${portfolioIdToUse || ""}`);
     } catch (err) {
       toast.error("Failed to save. Please try again.");
     }

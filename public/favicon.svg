@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#0f172a" />
+  <g fill="#a78bfa">
+    <path d="M20 24c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8z" />
+    <path d="M36 34c-1.657 0-3 1.343-3 3v6h6v-6c0-1.657-1.343-3-3-3z" opacity="0.9"/>
+  </g>
+  <text x="32" y="50" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#e6e6ff" text-anchor="middle">AI</text>
+</svg>
